@@ -1,0 +1,30 @@
+# Composer
+/vendor/
+composer.phar
+
+# Local secrets — never commit real credentials
+/mail-config.php
+/db-config.php
+/db-config-live.php
+/recodik-config.php
+
+# Uploaded media (keep the folder, ignore its contents)
+/assets/uploads/*
+!/assets/uploads/.htaccess
+!/assets/uploads/.gitkeep
+
+# Large static video/audio assets — already live on the server, exceed
+# GitHub's 100MB file limit, and don't need version control
+*.mp4
+*.mov
+*.mp3
+*.wfp
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+
+# Generated at the web root by the SEO admin
+/robots.txt
+/sitemap.xml

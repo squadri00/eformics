@@ -1,0 +1,10 @@
+# Admin area
+Options -Indexes
+
+# Block direct requests to bootstrap / partial includes
+<FilesMatch "^_|^\.">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(?i:sql)$">
+  Require all denied
+</FilesMatch>
