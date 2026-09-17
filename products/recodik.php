@@ -11,7 +11,7 @@ require_once __DIR__ . '/../partials/recodik.php';
 $countries = recodik_countries();
 ?>
 
-<?php $ph = page_hero('products/recodik'); ?>
+<?php $ph = page_hero('recodik'); ?>
 <section class="page-hero">
   <div class="container<?= $ph !== '' ? ' page-hero-grid' : '' ?>">
     <?php if ($ph !== ''): ?><div><?php endif; ?>
@@ -59,9 +59,9 @@ $countries = recodik_countries();
       <span class="eyebrow">How it works</span>
       <h2>Verify your email, download, and you're building in minutes.</h2>
     </div>
-    <div class="steps" style="grid-template-columns:repeat(3,1fr);">
+    <div class="steps steps-3">
       <div class="step reveal"><span class="num">01</span><h3>Verify your email</h3><p>Enter your email and country below &mdash; we send a 6-digit code so we know the download went to a real inbox. That's it, no account, no card.</p></div>
-      <div class="step reveal"><span class="num">02</span><h3>Download &amp; run it</h3><p>A single Windows program &mdash; double-click it and it opens in your browser. (Prefer Docker or Linux? <a href="<?= url('/contact.php') ?>#contact-form">ask us</a> for the self-hosted server build.)</p></div>
+      <div class="step reveal"><span class="num">02</span><h3>Download &amp; run it</h3><p>A single program for Windows or Mac &mdash; double-click it and it opens in your browser. (Prefer Docker or Linux? <a href="<?= url('/contact.php') ?>#contact-form">ask us</a> for the self-hosted server build.)</p></div>
       <div class="step reveal"><span class="num">03</span><h3>Build your first category</h3><p>Create a category, add a few fields, add your first record. That's the whole idea &mdash; everything else is built on top of that.</p></div>
     </div>
   </div>
@@ -73,9 +73,27 @@ $countries = recodik_countries();
       <span class="eyebrow">Free download</span>
       <h2>Get Recodik &mdash; free, no license.</h2>
       <p class="lede">We just need an email to send your download link's verification code to, and your country so we know where Recodik is being used. We won't use it for anything else — see our <a href="<?= url('/privacy-policy.php') ?>">Privacy Policy</a>.</p>
+      <div class="seg-toggle" role="group" aria-label="Choose your operating system" style="margin-top:18px;">
+        <button type="button" id="rkOsWindows" data-os="windows" aria-pressed="false">Windows</button>
+        <button type="button" id="rkOsMac" data-os="mac" aria-pressed="false">macOS</button>
+      </div>
     </div>
 
     <div class="card reveal" style="padding:32px;">
+      <div class="notice" id="rkNoticeWindows">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>
+          <strong>A note about security warnings</strong>
+          Recodik is new, independently-published software, so Windows SmartScreen and some antivirus tools don't recognize it yet &mdash; that's normal for a small publisher and isn't a sign of a problem. When you download or install it, you may see a <em>"Windows protected your PC"</em> screen, or your antivirus may pause the file. If that happens, click <strong>More info</strong>, then <strong>Run anyway</strong> to continue. We publish the file exactly as built, with nothing added or changed afterward.
+        </div>
+      </div>
+      <div class="notice" id="rkNoticeMac" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div>
+          <strong>A note about security warnings</strong>
+          Recodik isn't (yet) signed with an Apple Developer certificate, so Gatekeeper blocks a plain double-click the first time &mdash; that's normal for new, independently-published Mac apps and isn't a sign of a problem. After unzipping, <strong>right-click Recodik.app &rarr; Open &rarr; Open</strong> once. Every launch after that works normally.
+        </div>
+      </div>
       <form id="recodikRequestForm" style="display:grid;gap:16px;">
         <div class="hp" aria-hidden="true">
           <input type="text" name="website" tabindex="-1" autocomplete="off" value="">
@@ -110,7 +128,16 @@ $countries = recodik_countries();
 
       <div id="recodikDownloadReady" style="display:none;text-align:center;padding:12px 0;">
         <p style="font-weight:600;margin-bottom:14px;">You're verified &mdash; your download should start automatically.</p>
-        <a href="#" id="recodikDownloadLink" class="btn btn-primary">Download Recodik.exe again</a>
+        <a href="#" id="recodikDownloadLink" class="btn btn-primary">Download again</a>
+        <p class="adm-help" style="margin:10px 0 0;color:var(--ink-soft);font-size:.82rem;">Wrong platform? Use the Windows / macOS switch above, then click download again &mdash; no need to re-verify.</p>
+        <div class="notice notice-sm" id="rkNoticeWindowsSm" style="text-align:left;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div>If Windows or your browser shows a security prompt for the download or the installer, choose <strong>Keep</strong>, then <strong>More info &rarr; Run anyway</strong>. This is expected for new, independently-published apps like Recodik &mdash; it isn't a sign the file is unsafe.</div>
+        </div>
+        <div class="notice notice-sm" id="rkNoticeMacSm" style="text-align:left;" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div>After unzipping, <strong>right-click Recodik.app &rarr; Open &rarr; Open</strong> once &mdash; Gatekeeper blocks a plain double-click the first time for unsigned apps like this. Every launch after that works normally.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -127,6 +154,7 @@ $countries = recodik_countries();
       <div class="card reveal"><h3>Is my data private?</h3><p>Completely. Recodik runs on your own server or PC and makes no outbound calls of any kind — no analytics, no telemetry. Nothing you store in it is ever sent to us or anyone else.</p></div>
       <div class="card reveal"><h3>Why verify my email first?</h3><p>Just to confirm the download reaches a real inbox and to keep a rough count of where Recodik is being used. We don't require an account, a password, or any payment details.</p></div>
       <div class="card reveal"><h3>What if I need help?</h3><p><a href="<?= url('/contact.php') ?>#contact-form">Contact us</a> any time — and the app itself has a full, plain-English Help guide built in once you're set up.</p></div>
+      <div class="card reveal"><h3>Is the download safe?</h3><p>Recodik is open source (<a href="https://github.com/squadri00/recodik" target="_blank" rel="noopener noreferrer">source on GitHub</a>, MIT licensed). We've applied for free code signing through the <a href="https://signpath.org" target="_blank" rel="noopener noreferrer">SignPath Foundation</a>'s open-source program, so the download can be properly signed rather than self-signed.</p></div>
     </div>
   </div>
 </section>
@@ -155,8 +183,38 @@ $countries = recodik_countries();
   var dlLink    = document.getElementById('recodikDownloadLink');
   if (!reqForm || !verForm) return;
 
-  var ACTION_URL = '<?= url('/partials/recodik-otp-handler.php') ?>';
-  var currentEmail = '';
+  var ACTION_URL     = '<?= url('/partials/recodik-otp-handler.php') ?>';
+  var DOWNLOAD_URL   = '<?= url('/recodik-download.php') ?>';
+  var currentEmail   = '';
+  var verified       = false;
+
+  /* --- OS switch: auto-detected on load, overridable any time ------- */
+  var osBtns = { windows: document.getElementById('rkOsWindows'), mac: document.getElementById('rkOsMac') };
+  var noticesByOs = {
+    windows: [document.getElementById('rkNoticeWindows'), document.getElementById('rkNoticeWindowsSm')],
+    mac:     [document.getElementById('rkNoticeMac'),     document.getElementById('rkNoticeMacSm')]
+  };
+
+  function detectOs() {
+    var ua = navigator.userAgent || '';
+    return (/Macintosh|Mac OS X/.test(ua) && !/iPhone|iPad/.test(ua)) ? 'mac' : 'windows';
+  }
+
+  var currentOs = detectOs();
+
+  function applyOs() {
+    ['windows', 'mac'].forEach(function (os) {
+      if (osBtns[os]) { osBtns[os].classList.toggle('is-active', os === currentOs); osBtns[os].setAttribute('aria-pressed', os === currentOs ? 'true' : 'false'); }
+      noticesByOs[os].forEach(function (el) { if (el) el.hidden = os !== currentOs; });
+    });
+    if (verified && dlLink) { dlLink.href = DOWNLOAD_URL + '?os=' + currentOs; }
+  }
+  applyOs();
+
+  Object.keys(osBtns).forEach(function (os) {
+    if (!osBtns[os]) return;
+    osBtns[os].addEventListener('click', function () { currentOs = os; applyOs(); });
+  });
 
   function showStatus(el, msg, ok) {
     if (!el) return;
@@ -205,12 +263,14 @@ $countries = recodik_countries();
     var btn = document.getElementById('recodikVerifyBtn');
     btn.disabled = true; var label = btn.textContent; btn.textContent = 'Verifying…';
 
-    post('verify', { email: currentEmail, code: code })
+    post('verify', { email: currentEmail, code: code, os: currentOs })
       .then(function (r) {
         if (r.ok && r.data.ok) {
+          verified = true;
           verForm.style.display = 'none';
           readyBox.style.display = 'block';
           dlLink.href = r.data.download_url;
+          applyOs();
           window.location.href = r.data.download_url;
         } else {
           showStatus(verStatus, (r.data && r.data.error) || 'That code did not work. Please try again.', false);
