@@ -62,7 +62,7 @@ $countries = recodik_countries();
     <div class="steps steps-3">
       <div class="step reveal"><span class="num">01</span><h3>Verify your email</h3><p>Enter your email and country below &mdash; we send a 6-digit code so we know the download went to a real inbox. That's it, no account, no card.</p></div>
       <div class="step reveal"><span class="num">02</span><h3>Download &amp; run it</h3><p>A single program for Windows or Mac &mdash; double-click it and it opens in your browser. (Prefer Docker or Linux? <a href="<?= url('/contact.php') ?>#contact-form">ask us</a> for the self-hosted server build.)</p></div>
-      <div class="step reveal"><span class="num">03</span><h3>Build your first category</h3><p>Create a category, add a few fields, add your first record. That's the whole idea &mdash; everything else is built on top of that.</p></div>
+      <div class="step reveal"><span class="num">03</span><h3>Explore it, then make it yours</h3><p>It opens with realistic sample data already filled in &mdash; customers, projects, domains, the works &mdash; so you can click around and see how it all fits together first. When you're ready, clear it with one click and start building your own categories from scratch.</p></div>
     </div>
   </div>
 </section>
@@ -155,6 +155,7 @@ $countries = recodik_countries();
       <div class="card reveal"><h3>Why verify my email first?</h3><p>Just to confirm the download reaches a real inbox and to keep a rough count of where Recodik is being used. We don't require an account, a password, or any payment details.</p></div>
       <div class="card reveal"><h3>What if I need help?</h3><p><a href="<?= url('/contact.php') ?>#contact-form">Contact us</a> any time — and the app itself has a full, plain-English Help guide built in once you're set up.</p></div>
       <div class="card reveal"><h3>Is the download safe?</h3><p>Recodik is open source (<a href="https://github.com/squadri00/recodik" target="_blank" rel="noopener noreferrer">source on GitHub</a>, MIT licensed). We've applied for free code signing through the <a href="https://signpath.org" target="_blank" rel="noopener noreferrer">SignPath Foundation</a>'s open-source program, so the download can be properly signed rather than self-signed.</p></div>
+      <div class="card reveal"><h3>What's inside when I first open it?</h3><p>A complete set of sample data &mdash; customers, domains, hosting accounts, and projects &mdash; so you can explore every feature before typing anything yourself. One click in Settings clears it all and hands you a blank slate to build your own system.</p></div>
     </div>
   </div>
 </section>
